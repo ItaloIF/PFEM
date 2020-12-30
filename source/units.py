@@ -12,6 +12,7 @@ kgf = 9.8066*N
 MPa = 10**6*Pa
 psi = 6894.76*Pa
 Hz = 1/s
+kN = 1000*N
 
 # physical constants
 g = 9.81*m/s**2
