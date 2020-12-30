@@ -4,7 +4,7 @@ import gmsh
 gmsh.initialize()
 gmsh.clear()
 gmsh.option.setNumber('General.Terminal', 1)
-msTg = 'gmsh/port1'
+msTg = 'gmsh/port2'
 gmsh.model.add(msTg)
 gmg = gmsh.model.geo
 
@@ -22,7 +22,9 @@ gmg.addPoint(Lx-H, Ly-H, 0, ms, 4)
 gmg.addPoint(Lx-H, 0, 0, ms, 5)
 gmg.addPoint(Lx, 0, 0, ms, 6)
 gmg.addPoint(Lx, Ly, 0, ms, 7)
-gmg.addPoint(0, Ly, 0, ms, 8)
+gmg.addPoint(Lx/2+0.5, Ly, 0, ms, 8)
+gmg.addPoint(Lx/2-0.5, Ly, 0, ms, 9)
+gmg.addPoint(0, Ly, 0, ms, 10)
 
 # define lines
 gmg.addLine(1, 2, 1)
@@ -32,10 +34,12 @@ gmg.addLine(4, 5, 4)
 gmg.addLine(5, 6, 5)
 gmg.addLine(6, 7, 6)
 gmg.addLine(7, 8, 7)
-gmg.addLine(8, 1, 8)
+gmg.addLine(8, 9, 8)
+gmg.addLine(9, 10, 9)
+gmg.addLine(10, 1, 10)
 
 
-gmsh.model.geo.addCurveLoop([1, 2, 3, 4, 5, 6, 7, 8] , 1)
+gmsh.model.geo.addCurveLoop([1, 2, 3, 4, 5, 6, 7, 8, 9 ,10] , 1)
 
 # define surface
 gmsh.model.geo.addPlaneSurface([1], 1)
