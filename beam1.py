@@ -15,7 +15,7 @@ ops.node(4,0.0,H)
 
 # propiedad del material
 mTag = 1
-E = 200000
+E = 24600000000
 nu = 0.2
 ops.nDMaterial('ElasticIsotropic', mTag, E, nu)
 eleArgs = ['tri31', B, 'PlaneStress', mTag]
@@ -37,7 +37,7 @@ ops.fixX(0.0, *[1,1], '-tol', 1e-10)
 ops.timeSeries('Linear',1)
 ops.pattern('Plain',1,1)
 fx = 0
-fy = -1
+fy = -10000
 ops.load(2,*[fx,fy])
 ops.load(3,*[fx,fy])
 ops.load(24,*[fx,fy])
@@ -54,4 +54,3 @@ ops.analyze(1)
 fig = plt.figure(figsize=(25,5))
 opsv.plot_defo(2)
 plt.show()
-

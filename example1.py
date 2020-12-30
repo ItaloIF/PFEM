@@ -7,5 +7,5 @@ fig, ax = plt.subplots()
 ax.plot(t, s)
 ax.set(xlabel='time (s)', ylabel='voltage (mV)',
        title='About as simple as it gets, folks')
-fig.savefig('test.png')
+fig.savefig('out/test.png')
 plt.show()

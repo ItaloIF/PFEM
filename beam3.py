@@ -21,6 +21,10 @@ Node, Ele = readMesh(meshName, nodeDic, eleDic)
 nNode = len(Node)
 nEle = len(Ele)
 
+# paraview out
+# https://openseespydoc.readthedocs.io/en/latest/src/pvdRecorder.html
+outPV('out/Beam_1')
+
 # definir y construir el material
 mTg = 1
 nu = 0.15 # Poisson's ratio of soil
@@ -57,35 +61,8 @@ ops.constraints('Plain')
 ops.integrator('LoadControl',1)
 ops.algorithm('Linear')
 ops.analysis('Static')
-ops.start()
 ops.analyze(1)
-ops.stop()
-
-# Grafico de la deformada
-fig = plt.figure(figsize=(25,5))
-opsv.plot_defo(50)
-plt.show()
-
-fig = plt.figure(figsize=(50,10))
-opsv.plot_model()
-plt.show()
 
 # Desplazamiento
 disp = ops.nodeDisp(2,2)
 print(disp)
-
-# plot esfuerzos quad 2D
-fig = plt.figure(figsize=(50,10))
-sig_out = opsv.quad_sig_out_per_node() 
-# componentes: sxx, syy, sxy, svm, s1, s2, angle. (n_nodes x 7)
-opsv.plot_stress_2d(sig_out[:, 1], mesh_outline=1, cmap='plasma')
-#plt.colorbar()
-plt.show()
-
-# plot esfuerzos en los puntos de integracion quad 2D
-fig = plt.figure(figsize=(100,20))
-eles_ips_crd, eles_nds_crd, nds_crd, quads_conn = opsv.quad_crds_node_to_ip()
-eles_ips_sig_out, eles_nds_sig_out = opsv.quad_sig_out_per_ele()
-opsv.plot_mesh_with_ips_2d(nds_crd, eles_ips_crd, eles_nds_crd, quads_conn,
-                           eles_ips_sig_out, eles_nds_sig_out, 0)
-plt.show()
