@@ -14,7 +14,7 @@ Ly = 4.0
 H = 0.5
 
 # define points 
-ms = 0.10 # mesh size
+ms = 0.2 # mesh size
 gmg.addPoint(0, 0, 0, ms, 1) 
 gmg.addPoint(H, 0, 0, ms, 2)
 gmg.addPoint(H, Ly-H, 0, ms, 3)

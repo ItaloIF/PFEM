@@ -4,7 +4,7 @@ import gmsh
 gmsh.initialize()
 gmsh.clear()
 gmsh.option.setNumber('General.Terminal', 1)
-msTg = 'beam1'
+msTg = 'gmsh/beam1'
 gmsh.model.add(msTg)
 gmg = gmsh.model.geo
 
